@@ -1,0 +1,95 @@
+using System;
+
+namespace class01
+{
+    class Group
+    {
+    
+        public Group(Student Student1, Student Student2, Student Student3)
+        {
+            Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++");
+            Console.WriteLine(Student1.name);
+            Student1.Read();
+            Student1.Write();
+            Student1.Study();
+            Student1.Relax();
+
+            Console.WriteLine(Student2.name);
+            Student2.Read();
+            Student2.Write();
+            Student2.Study();
+            Student2.Relax();
+
+            Console.WriteLine(Student3.name);
+            Student3.Read();
+            Student3.Write();
+            Student3.Study();
+            Student3.Relax();            
+        }
+    }
+    class Student
+    {
+        public string name;
+
+        public virtual void Study()
+        {
+            Console.WriteLine(name + " \tcan study");
+        }
+
+        public virtual void Read()
+        {
+            Console.WriteLine(name + " \tcan read");
+        }
+
+        public virtual void Write()
+        {
+            Console.WriteLine(name + " \tcan write");
+        }
+
+        public virtual void Relax()
+        {
+            Console.WriteLine(name + " \trelaxes every time");
+        }
+
+        public Student(string Name)
+        {
+            name = Name;
+        }
+    }
+    class GoodStudent : Student
+    {
+        public GoodStudent(string Name)
+
+            : base(Name) { }
+
+       public  override void Relax()
+       {
+            Console.WriteLine(name + " never relaxes");
+       }
+
+    }
+    class BadStudent : Student
+    {
+        public BadStudent(string Name)
+
+            : base(Name) { }
+
+        public override void Write()
+        {
+            Console.WriteLine(name + "\t writes like he's high");
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Student S = new Student("Lyoha:");
+
+            Student B = new BadStudent("Vasya:");
+
+            Student G = new GoodStudent("Vanya:");
+
+            Group P = new Group(S, B, G);
+        }
+    }
+}
